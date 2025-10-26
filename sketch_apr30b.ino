@@ -1,20 +1,27 @@
-#include <Servo.h>
-Servo test;
-int valeur = 0;
+#include <ESP32Servo.h>
+int mode=1;
+int i=0;
+Servo monservo;
 void setup() {
-  // put your setup code here, to run once:
-  test.attach(2);
-  pinMode(3,INPUT);
-  pinMode(4,INPUT);
+  monservo.attach(4);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  if(digitalRead(3) = HIGH) {
-    valeur = valeur + 5;
+  monservo.write(i);
+  delay(10);
+  if (i==180) {
+    mode=2;
   }
-  if(digitalRead(4) = HIGH) {
-    valeur = valeur + 5;
+  if (i==0) {
+    mode=1;
+
   }
-  test.write(valeur);
+  if (mode==1) {
+    i++;
+
+  }
+  else{
+    i=i-1;
+  } 
 }
+
